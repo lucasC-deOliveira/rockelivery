@@ -8,7 +8,7 @@ use Mix.Config
 config :rockelivery, Rockelivery.Repo,
   username: "postgres",
   password: "docker",
-  database: "elixir",
+  database: "elixir_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
