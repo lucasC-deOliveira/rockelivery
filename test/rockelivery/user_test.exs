@@ -1,36 +1,22 @@
 defmodule Rockelivery.UserTest do
   use Rockelivery.DataCase, async: true
 
+  import Rockelivery.Factory
+
   alias Rockelivery.User
 
   alias Ecto.Changeset
 
   describe "changeset/2" do
     test "when all params are valid, returns a valid changeset" do
-      params = %{
-         age: 22,
-         address: "Rua dos ipes",
-         cep: "12345678",
-         name: "Lucas",
-         cpf: "12345678901",
-         email: "lucas@gmail.com",
-         password: "123456",
-      }
+      params = build(:user_params)
 
       response = User.changeset(params)
 
       assert %Changeset{changes: %{name: "Lucas"}, valid?: true} = response
     end
     test "when updating a changeset, returns a valid changeset with the given changes" do
-        params = %{
-           age: 22,
-           address: "Rua dos ipes",
-           cep: "12345678",
-           name: "Lucas",
-           cpf: "12345678901",
-           email: "lucas@gmail.com",
-           password: "123456",
-        }
+      params = build(:user_params)
 
         update_params = %{name: "Jorge"}
 
@@ -45,19 +31,14 @@ defmodule Rockelivery.UserTest do
     end
 
     test "when there are some error, returns an invalid changeset" do
-        params = %{
-           age: 22,
-           address: "Rua dos ipes",
-           cep: "12345678",
-           name: "Lucas",
-           cpf: "12345678901",
-           email: "lucas@gmail.com",
-           password: "123",
-        }
+      params = build(:user_params, %{age: 15, password: "123" })
 
         response = User.changeset(params)
 
-        expected_response = %{password: ["should be at least 6 character(s)"]}
+        expected_response = %{
+          age: ["must be greater than or equal to 18"],
+          password: ["should be at least 6 character(s)"]
+        }
 
         assert errors_on(response) == expected_response
     end
