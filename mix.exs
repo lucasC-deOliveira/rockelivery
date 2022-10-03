@@ -16,8 +16,8 @@ defmodule Rockelivery.MixProject do
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
+      ]
     ]
-  ]
   end
 
   # Configuration for the OTP application.
@@ -53,6 +53,8 @@ defmodule Rockelivery.MixProject do
       {:pbkdf2_elixir, "~> 1.3"},
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_machina, "~> 2.7.0", only: :test},
+      {:hackney, "~> 1.17"},
+      {:tesla, "~> 1.4.0"}
     ]
   end
 
