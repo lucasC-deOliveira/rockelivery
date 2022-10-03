@@ -13,7 +13,7 @@ defmodule Rockelivery.User do
 
   @required_update_params [:age, :address, :cep, :cpf, :email, :name]
 
-  @derive {Jason.Encoder, only: [ :id, :age, :cpf, :address, :email]}
+  @derive {Jason.Encoder, only: [:id, :age, :cpf, :address, :email]}
 
   schema "users" do
     field :age, :integer
@@ -30,9 +30,11 @@ defmodule Rockelivery.User do
     timestamps()
   end
 
+  def build(changeset), do: apply_action!(changeset, :create)
+
   def changeset(params) do
     %__MODULE__{}
-    |> cast(params,@required_params)
+    |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:password, min: 6)
     |> validate_length(:cep, is: 8)
@@ -44,9 +46,9 @@ defmodule Rockelivery.User do
     |> put_password_hash()
   end
 
-  def changeset(struct,params) do
+  def changeset(struct, params) do
     struct
-    |> cast(params,@required_update_params)
+    |> cast(params, @required_update_params)
     |> validate_required(@required_update_params)
     |> validate_length(:cep, is: 8)
     |> validate_length(:cpf, is: 11)
@@ -57,9 +59,8 @@ defmodule Rockelivery.User do
     |> put_password_hash()
   end
 
-
   defp put_password_hash(%Changeset{valid?: true, changes: %{password: password}} = changeset) do
-    change(changeset,Pbkdf2.add_hash(password))
+    change(changeset, Pbkdf2.add_hash(password))
   end
 
   defp put_password_hash(changeset), do: changeset
