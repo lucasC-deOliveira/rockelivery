@@ -3,7 +3,7 @@ defmodule Rockelivery.Item do
 
   import Ecto.Changeset
 
-  alias Rocklivery.Order
+  alias Rockelivery.Order
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -11,7 +11,7 @@ defmodule Rockelivery.Item do
 
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
 
-  @items_categories  [:food, :drink, :desert]
+  @items_categories [:food, :drink, :desert]
 
   schema "items" do
     field :category, Ecto.Enum, values: @items_categories
@@ -26,11 +26,9 @@ defmodule Rockelivery.Item do
 
   def changeset(params) do
     %__MODULE__{}
-    |> cast(params,@required_params)
+    |> cast(params, @required_params)
     |> validate_required(@required_params)
-    |> validate_length(:description, min: 6 )
+    |> validate_length(:description, min: 6)
     |> validate_number(:price, greater_than: 0)
-
-
   end
 end
