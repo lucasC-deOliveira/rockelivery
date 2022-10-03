@@ -3,6 +3,10 @@ defmodule RockeliveryWeb.UsersControllerTest do
 
   import Rockelivery.Factory
 
+  import Mox
+
+  alias Rockelivery.ViaCep.ClientMock
+
   describe "create/2" do
     test "when all params are valid, creates the user", %{conn: conn} do
       params = %{
@@ -14,6 +18,10 @@ defmodule RockeliveryWeb.UsersControllerTest do
         "email" => "lucas@gmail.com",
         "password" => "123456"
       }
+
+      expect(ClientMock, :get_cep_info, fn _cep ->
+        {:ok, build(:cep_info)}
+       end)
 
       response =
         conn
@@ -67,7 +75,7 @@ defmodule RockeliveryWeb.UsersControllerTest do
         |> delete(Routes.users_path(conn, :delete, id))
         |> response(:no_content)
 
-        assert response == ""
+      assert response == ""
     end
   end
 end

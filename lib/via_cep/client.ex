@@ -7,7 +7,7 @@ defmodule Rockelivery.ViaCep.Client do
 
   alias Rockelivery.ViaCep.Behavior
 
-  @behavior Behavior
+  @behaviour Behavior
 
   @base_url "https://viacep.com.br/ws/"
 
