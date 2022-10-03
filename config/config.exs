@@ -36,6 +36,10 @@ config :rockelivery, RockeliveryWeb.Auth.Guardian,
   issuer: "rockelivery",
   secret_key: "l6zmTLeS0Kb3Y3sog3m9Bn5oPCFWIS5xyk5CIjnu1qh4qGOzrNCbtI5DzjIYIejS"
 
+config :rockelivery, RockeliveryWeb.Auth.Pipeline,
+  module: RockeliveryWeb.Auth.Guardian,
+  error_handler: RockeliveryWeb.Auth.ErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
