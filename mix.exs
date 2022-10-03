@@ -55,11 +55,13 @@ defmodule Rockelivery.MixProject do
       {:ex_machina, "~> 2.7.0", only: :test},
       {:hackney, "~> 1.17"},
       {:tesla, "~> 1.4.0"},
-      {:bypass, "~> 2.1", only: :test}
+      {:bypass, "~> 2.1", only: :test},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 
-  # Aliases are shortcuts or tasks specific to the current project.
+  # Aliases are shortcuts or tasks specifi,c to the current project.
+
   # For example, to install project dependencies and perform other setup tasks, run:
   #
   #     $ mix setup

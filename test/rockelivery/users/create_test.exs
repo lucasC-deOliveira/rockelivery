@@ -3,7 +3,7 @@ defmodule Rockelivery.Users.CreateTest do
 
   import Rockelivery.Factory
 
-  alias Rockelivery.{Error, Repo, User}
+  alias Rockelivery.{Error,User}
 
   alias Rockelivery.Users.Create
 
