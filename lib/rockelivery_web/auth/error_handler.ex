@@ -3,7 +3,7 @@ defmodule RockeliveryWeb.Auth.ErrorHandler do
 
   alias Plug.Conn
 
-  @behaviour ErroHandler
+  @behaviour ErrorHandler
 
   def auth_error(conn, {error, _reason}, _opts) do
     body = Jason.encode!(%{message: to_string(error)})
