@@ -8,7 +8,7 @@ use Mix.Config
 config :rockelivery, Rockelivery.Repo,
   username: "postgres",
   password: "postgres",
-  database: "rockelivery_test#{System.get_env("MIX_TEST_PARTITION")"}",
+  database: "rockelivery_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
