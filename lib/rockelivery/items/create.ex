@@ -1,6 +1,5 @@
 defmodule Rockelivery.Items.Create do
-
-  alias Rockelivery.{Error, Repo,Item}
+  alias Rockelivery.{Error, Repo, Item}
 
   def call(params) do
     params
@@ -9,7 +8,7 @@ defmodule Rockelivery.Items.Create do
     |> handle_insert()
   end
 
-  defp handle_insert({:ok,%Item{}} = result), do: result
+  defp handle_insert({:ok, %Item{}} = result), do: result
 
   defp handle_insert({:error, result}) do
     {:error, Error.build(:bad_request, result)}
